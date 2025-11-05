@@ -1,0 +1,39 @@
+[package]
+name = "solwatch"
+version = "0.1.0"
+edition = "2021"
+authors = ["Your Name <your.email@example.com>"]
+description = "Real-time Solana mempool monitor for detecting new token launches and suspicious activity"
+license = "MIT"
+repository = "https://github.com/yourusername/solwatch"
+keywords = ["solana", "blockchain", "mempool", "monitoring", "cryptocurrency"]
+categories = ["command-line-utilities", "cryptography::cryptocurrencies"]
+
+[dependencies]
+tokio = { version = "1.35", features = ["full"] }
+solana-client = "1.17"
+solana-sdk = "1.17"
+solana-transaction-status = "1.17"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+reqwest = { version = "0.11", features = ["json"] }
+colored = "2.1"
+clap = { version = "4.4", features = ["derive"] }
+anyhow = "1.0"
+tokio-tungstenite = "0.21"
+futures-util = "0.3"
+base64 = "0.21"
+borsh = "0.10"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+strip = true
+
+[profile.dev]
+opt-level = 0
+
+[[bin]]
+name = "solwatch"
+path = "src/main.rs"
